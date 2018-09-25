@@ -1,8 +1,5 @@
 $(function() {
 
-    // Parallax
-    $('#container').parallax({imageSrc: 'img/bg_front.png'});
-
     $(document).on('click', '[href="#replyForm"]', function () {
         if ($(this).attr('aria-expanded') == 'true')
         {
@@ -24,7 +21,7 @@ $(function() {
 
 });
 
-function allRequestsMapInit()
+function allRequestsMapInit(dataUrl)
 {
     var myMap;
     var placemarkCollections = {};
@@ -66,7 +63,7 @@ function allRequestsMapInit()
                     },
                     {
                         iconLayout: 'default#image',
-                        iconImageHref: 'img/auchan_icon.png',
+                        iconImageHref: 'template/app/img/auchan_icon.png',
                         iconImageSize: [30, 42],
                         iconImageOffset: [-5, -38]
                     }
@@ -92,7 +89,7 @@ function allRequestsMapInit()
     }
 
     $.ajax({
-        url: "data/map.json"
+        url: dataUrl
     }).done(function(data) {
         shopList = data;
         ymaps.ready(init);
@@ -168,7 +165,7 @@ function detailRequestMap(mapData)
             },
             {
                 iconLayout: 'default#image',
-                iconImageHref: 'img/auchan_icon.png',
+                iconImageHref: 'template/app/img/auchan_icon.png',
                 iconImageSize: [30, 42],
                 iconImageOffset: [-5, -38]
             }
@@ -188,11 +185,11 @@ function detailRequestMap(mapData)
     ymaps.ready(init);
 }
 
-function newRequestLoadData() {
+function newRequestLoadData(dataUrl) {
     var mapData = [];
 
     $.ajax({
-        url: "data/map.json"
+        url: dataUrl
     }).done(function(data) {
         mapData = data;
         $('#city').html('');
