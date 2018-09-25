@@ -12,5 +12,21 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
+
+Route::get('requests', function () {
+    return view('requests');
+});
+
+//POST запрос аутентификации на сайте
+Route::post('login', 'Auth\LoginController@login');
+//GET запрос на выход из системы (логаут)
+Route::get('logout', 'Auth\LoginController@logout')->name('logout');
+//POST запрос регистрации на сайте
+Route::post('register', 'Auth\RegisterController@register');
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
