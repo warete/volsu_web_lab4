@@ -33,10 +33,7 @@
 </div>
 
 @include('include.scripts')
-<script>
-    allRequestsMapInit('{{{ asset('template/app/data/map.json') }}}');
-</script>
-
+@yield('additional-scripts')
 @include('include.modals')
 
 </body>

@@ -23,3 +23,9 @@
         </div>
     </div>
 @endsection
+
+@section('additional-scripts')
+    <script>
+        allRequestsMapInit('{{{ asset('template/app/data/map.json') }}}');
+    </script>
+@endsection
