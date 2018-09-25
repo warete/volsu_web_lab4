@@ -8,7 +8,11 @@
             <li class="pushy-link"><a href="{{ url('/') }}">Главная</a></li>
             <li class="pushy-link"><a href="{{ url('requests') }}">Все заявки</a></li>
             <li class="pushy-link"><a href="{{ url('new-request') }}">Оставить заявку</a></li>
-            <li class="pushy-link d-block d-md-none text-uppercase"><a href="{{ url('login') }}"><strong>Войти</strong></a></li>
+            @if (!Auth::check())
+                <li class="pushy-link d-block d-md-none text-uppercase"><a href="{{ url('login') }}"><strong>Войти</strong></a></li>
+            @else
+                <li class="pushy-link"><a href="{{ url('logout') }}"><strong>{{ Auth::user()->name }}</strong> (выйти)</a></li>
+            @endif
         </ul>
     </div>
 </nav>
