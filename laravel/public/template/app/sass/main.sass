@@ -1,0 +1,233 @@
+@import "vars"
+@import "fonts"
+@import "libs"
+
+::placeholder
+	color: #666
+
+::selection
+	background-color: $accent
+	color: #fff
+
+body
+	font-size: 16px
+	min-width: 320px
+	line-height: 1.65
+	font-family: $default-font
+	overflow-x: hidden
+	color: $text
+	position: relative
+	min-height: 100%
+	background-image: url(../img/bg_back.png)
+	background-color: $secondary
+	background-attachment: fixed
+      -webkit-background-size: contain
+      background-size: contain
+	input, textarea
+		border: #666 1px solid
+		outline: none
+		&:focus:required:invalid
+			border-color: red
+		&:required:valid
+			border-color: green
+
+html
+	height: 100%
+
+footer
+	position: absolute
+	bottom: 0
+	width: 100%
+	left: 0
+	height: 60px
+
+#container
+  padding-bottom: 60px
+
+.img-responsive
+	display: block
+	max-width: 100%
+	height: auto
+	&.img-width
+		width: 100%
+
+.text-center
+	text-align: center
+
+b, strong
+	font-weight: bold
+
+.text-shadow
+	text-shadow: 2px 2px 2px #000
+.box-shadow
+	-webkit-box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, .05)
+	-moz-box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, .05)
+	box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, .05)
+
+.form-group
+	.form-label
+		&.required::after
+			content: "*"
+			color: $accent
+			margin-left: .25rem
+
+
+/*Pushy custom start*/
+
+.pushy
+	width: 300px
+
+.pushy-right
+	-webkit-transform: translate3d(300px, 0, 0)
+	-ms-transform: translate3d(300px, 0, 0)
+	transform: translate3d(300px, 0, 0)
+
+.pushy-open-right #container, .pushy-open-right .push
+	-webkit-transform: translate3d(-300px, 0, 0)
+	-ms-transform: translate3d(-300px, 0, 0)
+	transform: translate3d(-300px, 0, 0)
+
+li.pushy-link
+	list-style-type: none
+	position: relative
+	&:before
+		content: ""
+		position: absolute
+		width: 22px
+		height: 35px
+		margin: 10px 0
+		background-image: url(../img/right_menu_pointer.png)
+		background-repeat: no-repeat
+	a
+		padding: 15px 40px
+
+/*Pushy custom end*/
+
+.bg-content
+  background-color: $content-bg!important
+
+.instruction
+	h2
+		color: $accent
+	&__number
+		&:before
+			content: ""
+			position: absolute
+			height: 100%
+			width: 1px
+			background-color: #e3e3e3
+			left: 15px
+			bottom: 0
+		span
+			display: block
+			width: 30px
+			height: 30px
+			-webkit-border-radius: 50%
+			-moz-border-radius: 50%
+			border-radius: 50%
+			background-color: #0077d3
+			color: #fff
+			font-weight: bold
+			position: relative
+
+.requests
+  &__header
+    text-decoration: underline
+
+.all-requests
+	#cityShop
+		display: none
+	#map
+		width: 100%
+		min-height: 400px
+	#shops
+		.list-group-item
+			background-color: transparent
+			border: 1px solid $primary
+			cursor: pointer
+			color: $primary
+			&.active
+				background-color: $primary
+				color: $light
+				font-weight: bold
+			&:hover
+				background-color: $primary
+				color: $light
+	&__list
+		max-height: 300px
+	.requests-list
+		&__item
+			border-top: 1px solid $accent
+
+.request-detail
+	&__map
+		#map
+			width: 100%
+			min-height: 400px
+	.detail-info
+		border-right: 1px solid $primary
+		&__item
+		.info-item
+			&__value
+				&.status
+					&_new
+						color: $green
+					&_waiting
+						color: $blue
+					&_done
+						color: $gray-500
+	.shops-small-list
+		&__title
+			text-align: center
+			color: $light
+		&__item
+			position: relative
+			padding: 15px 40px
+			&:before
+				content: ""
+				position: absolute
+				width: 22px
+				height: 35px
+				margin: 10px 0
+				background-image: url(../img/right_menu_pointer.png)
+				background-repeat: no-repeat
+				left: 0
+				top: 0
+			a
+				color: $light
+
+
+.new-request
+	&__item
+		border: 1px solid $light
+	.request-item
+		.done-icon
+			display: none
+		.error-icon
+			display: none
+		&__header
+			border-bottom: 1px solid $light
+			.btn-link
+				color: $light
+		&.done
+			border: 1px solid $green
+			.btn-link
+				color: $green
+			.card-header
+				border-bottom: 1px solid $green
+			.done-icon
+				color: $green
+				display: block
+		&.error
+			border: 1px solid $red
+			.btn-link
+				color: $red
+			.card-header
+				border-bottom: 1px solid $red
+			.error-icon
+				color: $red
+				display: block
+
+
+
+@import "media" // Always at the end

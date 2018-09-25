@@ -1,0 +1,96 @@
+[
+  {
+    "cityName": "Волгоград",
+    "shops": [
+      {
+        "coordinates": [48.636252, 44.436522],
+        "address": "Университетский просп., 107",
+        "requests": [
+          {
+            "name": "Желтые носки с единорогом",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, accusamus adipisci animi doloremque id inventore laborum odio quibusdam repudiandae tempore?"
+          },
+          {
+            "name": "Синие носки с котятами",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, accusamus adipisci animi doloremque id inventore laborum odio quibusdam repudiandae tempore?"
+          }
+        ]
+      },
+      {
+        "coordinates": [48.756494, 44.478005],
+        "address": "Историческая ул., 175",
+        "requests": [
+          {
+            "name": "Желтые носки с единорогом",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, accusamus adipisci animi doloremque id inventore laborum odio quibusdam repudiandae tempore?"
+          },
+          {
+            "name": "Синие носки с котятами",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, accusamus adipisci animi doloremque id inventore laborum odio quibusdam repudiandae tempore?"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "cityName": "Москва",
+    "shops": [
+      {
+        "coordinates": [55.785718, 37.664133],
+        "address": "Верхняя Красносельская ул., 3А",
+        "requests": [
+          {
+            "name": "Желтые носки с единорогом",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, accusamus adipisci animi doloremque id inventore laborum odio quibusdam repudiandae tempore?"
+          },
+          {
+            "name": "Синие носки с котятами",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, accusamus adipisci animi doloremque id inventore laborum odio quibusdam repudiandae tempore?"
+          }
+        ]
+      },
+      {
+        "coordinates": [55.735654, 37.468006],
+        "address": "Кастанаевская ул., 54, корп. 3",
+        "requests": [
+          {
+            "name": "Желтые носки с единорогом",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, accusamus adipisci animi doloremque id inventore laborum odio quibusdam repudiandae tempore?"
+          },
+          {
+            "name": "Синие носки с котятами",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, accusamus adipisci animi doloremque id inventore laborum odio quibusdam repudiandae tempore?"
+          }
+        ]
+      },
+      {
+        "coordinates": [55.631139, 37.659462],
+        "address": "Пролетарский просп., вл30",
+        "requests": [
+          {
+            "name": "Желтые носки с единорогом",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, accusamus adipisci animi doloremque id inventore laborum odio quibusdam repudiandae tempore?"
+          },
+          {
+            "name": "Синие носки с котятами",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, accusamus adipisci animi doloremque id inventore laborum odio quibusdam repudiandae tempore?"
+          }
+        ]
+      },
+      {
+        "coordinates": [55.707531, 37.385600],
+        "address": "МКАД, 53-й километр, вл110",
+        "requests": [
+          {
+            "name": "Желтые носки с единорогом",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, accusamus adipisci animi doloremque id inventore laborum odio quibusdam repudiandae tempore?"
+          },
+          {
+            "name": "Синие носки с котятами",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, accusamus adipisci animi doloremque id inventore laborum odio quibusdam repudiandae tempore?"
+          }
+        ]
+      }
+    ]
+  }
+]
