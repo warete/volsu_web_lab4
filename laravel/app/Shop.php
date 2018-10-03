@@ -15,4 +15,9 @@ class Shop extends Model
     {
         return $this->belongsTo('App\City');
     }
+
+    public function requests()
+    {
+        return $this->hasMany('App\Request', 'shop_id');
+    }
 }
