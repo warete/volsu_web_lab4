@@ -32,6 +32,49 @@ Route::get('requests', function () {
     return view('requests');
 });
 
+//Все заявки
+Route::get('api/requests/mapdata', function () {
+    $jsonResponse = array();
+
+    $cities = City::get();
+
+    $arResp = array();
+    foreach ($cities as $city)
+    {
+        $arResp["cityName"] = $city->name;
+        $arResp["shops"] = array();
+        $shops = $city->shops;
+        $arShopResp = array();
+        foreach ($shops as $shop)
+        {
+            $arShopResp["coordinates"] = array($shop->latitude, $shop->longitude);
+            $arShopResp["address"] = $shop->address;
+            $arShopResp["requests"] = array();
+            $requests = $shop->requests;
+            $arReqResp = array();
+            foreach($requests as $request)
+            {
+                $arReqResp["name"] = $request->name;
+                $arReqResp["description"] = $request->description;
+                $arShopResp["requests"][] = $arReqResp;
+                $arReqResp = array();
+            }
+            if (count($arShopResp["requests"]) > 0)
+            {
+                $arResp["shops"][] = $arShopResp;
+            }
+            $arShopResp = array();
+        }
+        if (count($arResp["shops"]) > 0)
+        {
+            $jsonResponse[] = $arResp;
+        }
+        $arResp = array();
+    }
+
+    return response()->json($jsonResponse);
+});
+
 //Новая заявка
 Route::get('new-request', function () {
     return view('new-request');

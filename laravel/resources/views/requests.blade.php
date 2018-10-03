@@ -26,6 +26,6 @@
 
 @section('additional-scripts')
     <script>
-        allRequestsMapInit('{{{ asset('template/app/data/map.json') }}}');
+        allRequestsMapInit('/api/requests/mapdata');
     </script>
 @endsection
