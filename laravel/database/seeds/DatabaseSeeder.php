@@ -49,7 +49,7 @@ class RequestsTableSeeder extends Seeder {
 
     public function run()
     {
-        Request::create(['name' => 'Синие носки с котятами', 'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, accusamus adipisci animi doloremque id inventore laborum odio quibusdam repudiandae tempore?', 'status' => 1, 'shop_id' => 1, 'user_id' => 1]);
+        Request::create(['name' => 'Белые носки с ушками', 'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, accusamus adipisci animi doloremque id inventore laborum odio quibusdam repudiandae tempore?', 'status' => 1, 'shop_id' => 3, 'user_id' => 1]);
     }
 
 }

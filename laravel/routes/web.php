@@ -1,4 +1,7 @@
 <?php
+use App\Request;
+use App\City;
+use App\Shop;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,7 +16,15 @@
 
 //Главная
 Route::get('/', function () {
-    return view('index');
+    $requestsInfo = Request::where('status', '=', 1)->take(5)->get();
+    $arRequests = array();
+    foreach ($requestsInfo as $requestItem)
+    {
+        $arRequests[$requestItem->id] = $requestItem->toArray();
+        $arRequests[$requestItem->id]['shop'] = $requestItem->shop->toArray();
+        $arRequests[$requestItem->id]['city'] = $requestItem->shop->city->toArray();
+    }
+    return view('index', ['arRequests' => $arRequests]);
 });
 
 //Все заявки
