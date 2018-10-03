@@ -8,6 +8,20 @@ class Request extends Model
 {
     protected $table = 'requests';
     public $timestamps = false;
+    public static $statuses = [
+        1 => [
+            'name' => 'Новая',
+            'class' => 'new'
+        ],
+        2 => [
+            'name' => 'Ожидает',
+            'class' => 'waiting'
+        ],
+        3 => [
+            'name' => 'Завершена',
+            'class' => 'done'
+        ]
+    ];
 
     protected $fillable = ['name', 'description', 'status', 'shop_id', 'user_id'];
 

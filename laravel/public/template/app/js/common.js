@@ -63,7 +63,7 @@ function allRequestsMapInit(dataUrl)
                     },
                     {
                         iconLayout: 'default#image',
-                        iconImageHref: 'template/app/img/auchan_icon.png',
+                        iconImageHref: '/template/app/img/auchan_icon.png',
                         iconImageSize: [30, 42],
                         iconImageOffset: [-5, -38]
                     }
@@ -165,7 +165,7 @@ function detailRequestMap(mapData)
             },
             {
                 iconLayout: 'default#image',
-                iconImageHref: 'template/app/img/auchan_icon.png',
+                iconImageHref: '/template/app/img/auchan_icon.png',
                 iconImageSize: [30, 42],
                 iconImageOffset: [-5, -38]
             }

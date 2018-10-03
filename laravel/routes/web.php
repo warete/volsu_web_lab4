@@ -80,6 +80,31 @@ Route::get('new-request', function () {
     return view('new-request');
 });
 
+//Детальная страница заявки
+Route::get('request/{request}', function (Request $request) {
+    $arRequest = $request->toArray();
+    $shop = $request->shop;
+    $arRequest["shop"] = $shop->toArray();
+    $arRequest["city"] = $shop->city->toArray();
+    $arRequest["status"] = Request::$statuses[$arRequest["status"]];
+    $arRequest["jsData"] = json_encode([
+        "coordinates" => [$arRequest["shop"]["latitude"], $arRequest["shop"]["longitude"]],
+        "address" => $arRequest["shop"]["address"],
+        "name" => $arRequest["name"],
+        "description" => $arRequest["description"]
+    ]);
+    $nearbyShops = Shop::where('city_id', '=', $arRequest["city"]['id'])->where('id', '<>', $arRequest["shop"]['id'])->get();
+    $arNearbyShops = array();
+    foreach ($nearbyShops as $nearbyShop)
+    {
+        if ($nearbyShop->requests->count() > 0)
+        {
+            $arNearbyShops[$nearbyShop->id] = $nearbyShop->toArray();
+        }
+    }
+    return view('request-detail', ['arRequest' => $arRequest, 'arNearbyShops' => $arNearbyShops]);
+});
+
 /***********************************/
 /*     Авторизация/регистрация     */
 /***********************************/
