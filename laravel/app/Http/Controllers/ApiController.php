@@ -72,6 +72,7 @@ class ApiController extends Controller
     {
         $requestData = $request->all();
         $arResponse = array();
+        $requestData['request_id'] = intval($requestData['request_id']);
         if (!Request::find($requestData['request_id']))
         {
             $arResponse["error"]["text"] = "Неизвестный id заявки.";
@@ -97,6 +98,8 @@ class ApiController extends Controller
     {
         $requestData = $request->all();
         $arResponse = array();
+        $requestData['id'] = intval($requestData['id']);
+        $requestData['status'] = intval($requestData['status']);
         $respond = Respond::find($requestData['id']);
         if (!$respond)
         {
