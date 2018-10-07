@@ -2,6 +2,7 @@
 use App\Request;
 use App\City;
 use App\Shop;
+use App\Respond;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,78 +34,17 @@ Route::get('requests', function () {
 });
 
 //Все заявки
-Route::get('api/requests/mapdata', function () {
-    $jsonResponse = array();
-
-    $cities = City::get();
-
-    $arResp = array();
-    foreach ($cities as $city)
-    {
-        $arResp["cityName"] = $city->name;
-        $arResp["shops"] = array();
-        $shops = $city->shops;
-        $arShopResp = array();
-        foreach ($shops as $shop)
-        {
-            $arShopResp["coordinates"] = array($shop->latitude, $shop->longitude);
-            $arShopResp["address"] = $shop->address;
-            $arShopResp["requests"] = array();
-            $requests = $shop->requests;
-            $arReqResp = array();
-            foreach($requests as $request)
-            {
-                $arReqResp["name"] = $request->name;
-                $arReqResp["description"] = $request->description;
-                $arReqResp["id"] = $request->id;
-                $arShopResp["requests"][] = $arReqResp;
-                $arReqResp = array();
-            }
-            if (count($arShopResp["requests"]) > 0)
-            {
-                $arResp["shops"][] = $arShopResp;
-            }
-            $arShopResp = array();
-        }
-        if (count($arResp["shops"]) > 0)
-        {
-            $jsonResponse[] = $arResp;
-        }
-        $arResp = array();
-    }
-
-    return response()->json($jsonResponse);
-});
+Route::get('api/requests/mapdata', 'ApiController@getMapData');
 
 //Новая заявка
 Route::get('new-request', function () {
     return view('new-request');
 });
 
+Route::post('new-request', array('before' => 'csrf', 'uses' => 'ApiController@addNewRespond'));
+
 //Детальная страница заявки
-Route::get('request/{request}', array('as' => 'request_detail', function (Request $request) {
-    $arRequest = $request->toArray();
-    $shop = $request->shop;
-    $arRequest["shop"] = $shop->toArray();
-    $arRequest["city"] = $shop->city->toArray();
-    $arRequest["status"] = Request::$statuses[$arRequest["status"]];
-    $arRequest["jsData"] = json_encode([
-        "coordinates" => [$arRequest["shop"]["latitude"], $arRequest["shop"]["longitude"]],
-        "address" => $arRequest["shop"]["address"],
-        "name" => $arRequest["name"],
-        "description" => $arRequest["description"]
-    ]);
-    $nearbyShops = Shop::where('city_id', '=', $arRequest["city"]['id'])->where('id', '<>', $arRequest["shop"]['id'])->get();
-    $arNearbyShops = array();
-    foreach ($nearbyShops as $nearbyShop)
-    {
-        if ($nearbyShop->requests->count() > 0)
-        {
-            $arNearbyShops[$nearbyShop->id] = $nearbyShop->toArray();
-        }
-    }
-    return view('request-detail', ['arRequest' => $arRequest, 'arNearbyShops' => $arNearbyShops]);
-}));
+Route::get('request/{request}', array('uses' => 'RequestController@getDetailInfo'));
 
 /***********************************/
 /*     Авторизация/регистрация     */
