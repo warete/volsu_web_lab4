@@ -25,12 +25,14 @@ class ApiController extends Controller
         $arResp = array();
         foreach ($cities as $city)
         {
+            $arResp["cityId"] = $city->id;
             $arResp["cityName"] = $city->name;
             $arResp["shops"] = array();
             $shops = $city->shops;
             $arShopResp = array();
             foreach ($shops as $shop)
             {
+                $arShopResp["id"] = $shop->id;
                 $arShopResp["coordinates"] = array($shop->latitude, $shop->longitude);
                 $arShopResp["address"] = $shop->address;
                 $arShopResp["requests"] = array();

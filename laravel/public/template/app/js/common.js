@@ -41,7 +41,7 @@ function allRequestsMapInit(dataUrl)
         for (var i = 0; i < shopList.length; i++) {
 
             // Добавляем название города в выпадающий список
-            $('select#cities').append('<option value="' + i + '">' + shopList[i].cityName + '</option>');
+            $('select#cities').append('<option value="' + shopList[i].cityId + '">' + shopList[i].cityName + '</option>');
 
             // Создаём коллекцию меток для города
             var cityCollection = new ymaps.GeoObjectCollection();
@@ -99,22 +99,32 @@ function allRequestsMapInit(dataUrl)
     $(document).on('change', $('select#city'), function () {
         var cityId = $('select#cities').val();
 
+        var curCityKey = -1;
+        for (var i = 0; i < shopList.length; i++)
+        {
+            if (shopList[i].cityId == cityId)
+            {
+                curCityKey = i;
+                break;
+            }
+        }
+
         // Масштабируем и выравниваем карту так, чтобы были видны метки для выбранного города
-        myMap.setBounds(placemarkCollections[cityId].getBounds(), {checkZoomRange:true}).then(function(){
+        myMap.setBounds(placemarkCollections[curCityKey].getBounds(), {checkZoomRange:true}).then(function(){
             if(myMap.getZoom() > 15) myMap.setZoom(15); // Если значение zoom превышает 15, то устанавливаем 15.
         });
 
         $('#shops').html('');
         $(".all-requests__list").mCustomScrollbar("destroy");
         $('.all-requests__list.requests-list').html('');
-        for (var c = 0; c < shopList[cityId].shops.length; c++) {
-            $('#shops').append('<li class="list-group-item" value="' + c + '">' + shopList[cityId].shops[c].address + ' (' + shopList[cityId].shops[c].requests.length + ')' + '</li>');
-            for (var i = 0; i < shopList[cityId].shops[c].requests.length; i++)
+        for (var c = 0; c < shopList[curCityKey].shops.length; c++) {
+            $('#shops').append('<li class="list-group-item" value="' + c + '">' + shopList[curCityKey].shops[c].address + ' (' + shopList[curCityKey].shops[c].requests.length + ')' + '</li>');
+            for (var i = 0; i < shopList[curCityKey].shops[c].requests.length; i++)
             {
                 $('.all-requests__list.requests-list').append('<div class="col-12 py-2 requests-list__item">' +
-                    '<h4>' + shopList[cityId].shops[c].requests[i].name + '</h4>' +
-                    '<p>' + shopList[cityId].shops[c].requests[i].description + '</p>' +
-                    '<a class="btn btn-outline-primary float-right" href="/request/' + shopList[cityId].shops[c].requests[i].id + '">Ответить на заявку</a>' +
+                    '<h4>' + shopList[curCityKey].shops[c].requests[i].name + '</h4>' +
+                    '<p>' + shopList[curCityKey].shops[c].requests[i].description + '</p>' +
+                    '<a class="btn btn-outline-primary float-right" href="/request/' + shopList[curCityKey].shops[c].requests[i].id + '">Ответить на заявку</a>' +
                     '<div class="clearfix"></div>' +
                     '</div>');
             }
@@ -128,12 +138,22 @@ function allRequestsMapInit(dataUrl)
         var cityId = $('select#cities').val();
         var shopId = $(this).val();
 
+        var curCityKey = -1;
+        for (var i = 0; i < shopList.length; i++)
+        {
+            if (shopList[i].cityId == cityId)
+            {
+                curCityKey = i;
+                break;
+            }
+        }
+
         $("#shops li").removeClass("active");
         $(this).addClass("active");
 
-        myMap.setBounds(placemarkCollections[cityId].getBounds(), {checkZoomRange:true}).then(function(){
+        myMap.setBounds(placemarkCollections[curCityKey].getBounds(), {checkZoomRange:true}).then(function(){
             if(myMap.getZoom() > 15) myMap.setZoom(15); // Если значение zoom превышает 15, то устанавливаем 15.
-            placemarkList[cityId][shopId].balloon.open();
+            placemarkList[curCityKey][shopId].balloon.open();
         });
     });
 }
@@ -197,12 +217,12 @@ function newRequestLoadData(dataUrl) {
 
         for(var i = 0; i < data.length; i++)
         {
-            $('#city').append('<option value="' + i + '">' + data[i].cityName + '</option>');
+            $('#city').append('<option value="' + data[i].cityId + '">' + data[i].cityName + '</option>');
         }
 
         for(var i = 0; i < data[0].shops.length; i++)
         {
-            $('#shop').append('<option>' + data[0].shops[i].address + '</option>');
+            $('#shop').append('<option value="' + data[0].shops[i].id + '">' + data[0].shops[i].address + '</option>');
         }
     });
 
@@ -210,12 +230,24 @@ function newRequestLoadData(dataUrl) {
         var $shops = $('#shop[name="shop"]'),
             curCity = $(this).val();
 
-        if (typeof(mapData[curCity]) != "undefined")
+        var curCityKey = -1;
+        for (var i = 0; i < mapData.length; i++)
+        {
+            if (mapData[i].cityId == curCity)
+            {
+                curCityKey = i;
+                break;
+            }
+        }
+        if (typeof(mapData[curCityKey]) != "undefined")
         {
             $shops.html('');
-            for(var i = 0; i < mapData[curCity].shops.length; i++)
+            if (curCityKey >= 0)
             {
-                $('#shop').append('<option>' + mapData[curCity].shops[i].address + '</option>');
+                for(var i = 0; i < mapData[curCityKey].shops.length; i++)
+                {
+                    $('#shop').append('<option>' + mapData[curCityKey].shops[i].address + '</option>');
+                }
             }
         }
     });
