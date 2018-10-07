@@ -132,4 +132,27 @@ class ApiController extends Controller
         }
         return response()->json($arResponse);
     }
+
+    public function addNewRequest(\Illuminate\Http\Request $request)
+    {
+        $requestData = $request->all();
+        $arResponse = array();
+        $requestData['city'] = intval($requestData['city']);
+        $requestData['shop'] = intval($requestData['shop']);
+        $arCity = City::find($requestData['city']);
+        if (!$arCity)
+        {
+            return redirect('/new-request');
+        }
+        if (!Shop::find($requestData['shop']) || !$arCity->shops->find($requestData['shop']))
+        {
+            return redirect('/new-request');
+        }
+        if (strlen($requestData['message']) == 0)
+        {
+            return redirect('/new-request');
+        }
+        $newRequest = Request::create(['name' => substr($requestData['message'], 0, 50) . "...", 'description' => $requestData['message'], 'status' => 1, 'shop_id' => $requestData['shop'], 'user_id' => 1]);
+        return redirect('/request/' . $newRequest->id);
+    }
 }
