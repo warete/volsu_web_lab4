@@ -34,4 +34,9 @@ class Request extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public function responds()
+    {
+        return $this->hasMany('App\Respond', 'request_id');
+    }
 }
