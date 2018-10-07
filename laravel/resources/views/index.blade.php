@@ -14,7 +14,7 @@
                     <p><strong>Магазин: </strong>{{ $requestItem['shop']['address'] }}</p>
                 </div>
                 <div class="col-3 align-self-end">
-                    <a href="#" class="btn btn-outline-primary float-right">Ответить на заявку</a>
+                    <a href="{{ url("request/{$requestItem['id']}") }}" class="btn btn-outline-primary float-right">Ответить на заявку</a>
                 </div>
             </div>
         </div>

@@ -32,7 +32,7 @@
         </div>
         <div class="col-12 col-md-4 mb-3">
             <div class="w-100 shops-small-list">
-                <a class="shops-small-list__title" href="#"><h5>Магазины с заявками рядом</h5></a>
+                <h5 class="shops-small-list__title">Магазины с заявками рядом</h5>
                 @foreach ($arNearbyShops as $nearbyShop)
                     <div class="shops-small-list__item"><a href="#">{{ $nearbyShop['address'] }}</a></div>
                 @endforeach

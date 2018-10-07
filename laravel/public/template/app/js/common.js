@@ -114,7 +114,7 @@ function allRequestsMapInit(dataUrl)
                 $('.all-requests__list.requests-list').append('<div class="col-12 py-2 requests-list__item">' +
                     '<h4>' + shopList[cityId].shops[c].requests[i].name + '</h4>' +
                     '<p>' + shopList[cityId].shops[c].requests[i].description + '</p>' +
-                    '<div class="btn btn-outline-primary float-right" href="#">Ответить на заявку</div>' +
+                    '<a class="btn btn-outline-primary float-right" href="/request/' + shopList[cityId].shops[c].requests[i].id + '">Ответить на заявку</a>' +
                     '<div class="clearfix"></div>' +
                     '</div>');
             }

@@ -56,6 +56,7 @@ Route::get('api/requests/mapdata', function () {
             {
                 $arReqResp["name"] = $request->name;
                 $arReqResp["description"] = $request->description;
+                $arReqResp["id"] = $request->id;
                 $arShopResp["requests"][] = $arReqResp;
                 $arReqResp = array();
             }
@@ -81,7 +82,7 @@ Route::get('new-request', function () {
 });
 
 //Детальная страница заявки
-Route::get('request/{request}', function (Request $request) {
+Route::get('request/{request}', array('as' => 'request_detail', function (Request $request) {
     $arRequest = $request->toArray();
     $shop = $request->shop;
     $arRequest["shop"] = $shop->toArray();
@@ -103,7 +104,7 @@ Route::get('request/{request}', function (Request $request) {
         }
     }
     return view('request-detail', ['arRequest' => $arRequest, 'arNearbyShops' => $arNearbyShops]);
-});
+}));
 
 /***********************************/
 /*     Авторизация/регистрация     */
