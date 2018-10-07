@@ -104,7 +104,7 @@ class RequestController extends Controller
      */
     public function lastRequests()
     {
-        $requestsInfo = Request::where('status', '<>', 3)->take(5)->get();
+        $requestsInfo = Request::where('status', '<>', 3)->take(5)->orderBy('id', 'desc')->get();
         $arRequests = array();
         foreach ($requestsInfo as $requestItem)
         {
