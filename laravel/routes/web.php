@@ -17,7 +17,7 @@ use App\Respond;
 
 //Главная
 Route::get('/', function () {
-    $requestsInfo = Request::where('status', '=', 1)->take(5)->get();
+    $requestsInfo = Request::where('status', '<>', 3)->take(5)->get();
     $arRequests = array();
     foreach ($requestsInfo as $requestItem)
     {
@@ -35,6 +35,9 @@ Route::get('requests', function () {
 
 //Все заявки
 Route::get('api/requests/mapdata', 'ApiController@getMapData');
+
+// Смена статуса ответа на заявку
+Route::post('respond/status', 'ApiController@changeRespondStatus');
 
 //Новая заявка
 Route::get('new-request', function () {

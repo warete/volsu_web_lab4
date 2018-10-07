@@ -84,4 +84,41 @@ class ApiController extends Controller
         $arResponse["success"] = ["id" => $newRequest->id, "comment" => $newRequest->comment, "text" => "Вы отправили свой ответ на заявку! Ждите одобрения ответа автором заявки."];
         return response()->json($arResponse);
     }
+
+    public function changeRespondStatus(\Illuminate\Http\Request $request)
+    {
+        $requestData = $request->all();
+        $arResponse = array();
+        $respond = Respond::find($requestData['id']);
+        if (!$respond)
+        {
+            $arResponse["error"]["text"] = "Неизвестный id ответа на заявку.";
+            return response()->json($arResponse);
+        }
+        if (!in_array($requestData['status'], array_keys(Respond::$statuses)))
+        {
+            $arResponse["error"]["text"] = "Неизвестный статус.";
+            return response()->json($arResponse);
+        }
+
+        $respond->status = $requestData['status'];
+
+        $requestForRespond = $respond->request;
+        if ($requestData['status'] == 2)
+            $requestForRespond->status = 2;
+        else if ($requestData['status'] == 1)
+            $requestForRespond->status = 3;
+        else
+            $requestForRespond->status = 1;
+
+        if ($respond->save() && $requestForRespond->save())
+        {
+            $arResponse["success"] = ["request_status" => Request::$statuses[2]];
+        }
+        else
+        {
+            $arResponse["error"]["text"] = "Произошла ошибка сохранения данных.";
+        }
+        return response()->json($arResponse);
+    }
 }
