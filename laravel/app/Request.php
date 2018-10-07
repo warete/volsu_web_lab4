@@ -14,7 +14,7 @@ class Request extends Model
             'class' => 'new'
         ],
         2 => [
-            'name' => 'Ожидает',
+            'name' => 'Выполняется',
             'class' => 'waiting'
         ],
         3 => [

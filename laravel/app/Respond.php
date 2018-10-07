@@ -10,7 +10,7 @@ class Respond extends Model
     public $timestamps = false;
     public static $statuses = [
         1 => [
-            'name' => 'Принят',
+            'name' => 'Завершен',
             'class' => 'accepted'
         ],
         2 => [
