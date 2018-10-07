@@ -3,7 +3,10 @@
 @section('title', 'Новая заявка')
 
 @section('content')
-    <div class="w-100 p-3 new-request accordion" id="newRequestForm">
+    @if (!Auth::Check())
+        <div class="alert alert-danger" role="alert">Доступ запрещен! Для продолжения требуется авторизация.</div>
+    @else
+        <div class="w-100 p-3 new-request accordion" id="newRequestForm">
         <form class="row p-3">
             <div class="card new-request__item request-item col-12 mb-2 text-light bg-transparent" data-step-id="#newRequestStep1">
                 <div class="card-header request-item__header" id="headingOne">
@@ -98,10 +101,16 @@
             </div>
         </form>
     </div>
+    @endif
 @endsection
 
 @section('additional-scripts')
     <script>
         newRequestLoadData('{{{ asset('template/app/data/map.json') }}}');
+        @if (!Auth::check())
+            $(document).ready(function () {
+                $('#AUTH_MODAL').modal('show');
+            });
+        @endif
     </script>
 @endsection
