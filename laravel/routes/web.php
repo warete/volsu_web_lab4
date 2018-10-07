@@ -23,11 +23,11 @@ Route::get('requests', function () {
     return view('requests');
 });
 
-//Все заявки
+//Все заявки (api)
 Route::get('api/requests/mapdata', 'ApiController@getMapData');
 
-// Смена статуса ответа на заявку
-Route::post('respond/status', 'ApiController@changeRespondStatus');
+// Смена статуса ответа на заявку (api)
+Route::post('api/respond/status', 'ApiController@changeRespondStatus');
 
 //Новая заявка
 Route::get('new-request', function () {

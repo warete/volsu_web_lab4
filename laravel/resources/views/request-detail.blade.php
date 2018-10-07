@@ -131,7 +131,7 @@
                 var $this = $(this);
                 $.ajax({
                     type: 'POST',
-                    url: '/respond/status',
+                    url: 'api/respond/status',
                     dataType: 'json',
                     data: {
                         'id': $this.attr('data-respond-id'),
