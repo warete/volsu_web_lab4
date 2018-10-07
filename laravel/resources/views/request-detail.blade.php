@@ -110,7 +110,7 @@
 
                 $.ajax({
                     type: 'POST',
-                    url: '/new-request',
+                    url: '/new-respond',
                     dataType: 'json',
                     data: $('#new-request-form').serialize(),
                     success: function(result){
@@ -131,7 +131,7 @@
                 var $this = $(this);
                 $.ajax({
                     type: 'POST',
-                    url: 'api/respond/status',
+                    url: '/api/respond/status',
                     dataType: 'json',
                     data: {
                         'id': $this.attr('data-respond-id'),
