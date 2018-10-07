@@ -42,7 +42,7 @@
             <div class="col-1 text-center py-4 instruction__number"><span>5</span></div>
             <div class="col-11 px-4 py-4 instruction__message">Договорись с соискателем где и как ты получишь носки</div>
             <div class="w-100 mt-3 text-center">
-                <a href="#" class="btn btn-lg btn-danger">Оставить заявку</a>
+                <a href="{{ url("new-request") }}" class="btn btn-lg btn-danger">Оставить заявку</a>
             </div>
         </div>
         <div class="row my-2 p-3 requests">
