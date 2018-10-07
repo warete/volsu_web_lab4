@@ -50,7 +50,7 @@
                         <a href="#replyForm" class="btn btn-outline-primary btn-block" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="replyForm">Ответить на заявку</a>
                     </div>
                     <div class="request-reply__form collapse" id="replyForm">
-                        {{ Form::open(array('url' => 'new-request', 'id' => 'new-request-form')) }}
+                        {{ Form::open(array('url' => 'new-respond', 'id' => 'new-request-form')) }}
                             {{ Form::hidden('request_id', $arRequest['id']) }}
                             <div class="form-group">
                                 {{ Form::label('message', 'Введите комментарий к ответу. Напишите, почему именно Вас должны выбрать.', array('class' => 'label-form')) }}

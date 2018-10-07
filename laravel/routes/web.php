@@ -34,7 +34,8 @@ Route::get('new-request', function () {
     return view('new-request');
 });
 
-Route::post('new-request', array('before' => 'csrf', 'uses' => 'ApiController@addNewRespond'));
+Route::post('new-respond', array('before' => 'csrf', 'uses' => 'ApiController@addNewRespond'));
+Route::post('new-request', array('before' => 'csrf', 'uses' => 'ApiController@addNewRequest'));
 
 //Детальная страница заявки
 Route::get('request/{request}', array('uses' => 'RequestController@getDetailInfo'));
