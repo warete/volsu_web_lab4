@@ -96,4 +96,22 @@ class RequestController extends Controller
         }
         return view('request-detail', ['arRequest' => $arRequest, 'arNearbyShops' => $arNearbyShops, 'hasUserRespond' => $hasUserRespond, 'isCreator' => $isCreator, 'arResponds' => $arResponds]);
     }
+
+    /**
+     * Последние заявки
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function lastRequests()
+    {
+        $requestsInfo = Request::where('status', '<>', 3)->take(5)->get();
+        $arRequests = array();
+        foreach ($requestsInfo as $requestItem)
+        {
+            $arRequests[$requestItem->id] = $requestItem->toArray();
+            $arRequests[$requestItem->id]['shop'] = $requestItem->shop->toArray();
+            $arRequests[$requestItem->id]['city'] = $requestItem->shop->city->toArray();
+        }
+        return view('index', ['arRequests' => $arRequests]);
+    }
 }

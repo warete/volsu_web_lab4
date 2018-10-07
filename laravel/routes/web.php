@@ -16,17 +16,7 @@ use App\Respond;
 */
 
 //Главная
-Route::get('/', function () {
-    $requestsInfo = Request::where('status', '<>', 3)->take(5)->get();
-    $arRequests = array();
-    foreach ($requestsInfo as $requestItem)
-    {
-        $arRequests[$requestItem->id] = $requestItem->toArray();
-        $arRequests[$requestItem->id]['shop'] = $requestItem->shop->toArray();
-        $arRequests[$requestItem->id]['city'] = $requestItem->shop->city->toArray();
-    }
-    return view('index', ['arRequests' => $arRequests]);
-});
+Route::get('/', 'RequestController@lastRequests');
 
 //Все заявки
 Route::get('requests', function () {

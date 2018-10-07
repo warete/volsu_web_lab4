@@ -85,6 +85,12 @@ class ApiController extends Controller
         return response()->json($arResponse);
     }
 
+    /**
+     * Смена статуса ответа на заявку
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function changeRespondStatus(\Illuminate\Http\Request $request)
     {
         $requestData = $request->all();
