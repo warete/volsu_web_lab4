@@ -14,6 +14,16 @@
         @endif
     </div>
     <div class="form-group">
+        <label class="form-label required">Email</label>
+        <input type="text" class="form-control" name="email" placeholder="Введите email" value="{{ old('email') }}" required>
+
+        @if ($errors->has('email'))
+            <span class="help-block">
+                    <strong>{{ $errors->first('email') }}</strong>
+                </span>
+        @endif
+    </div>
+    <div class="form-group">
         <label class="form-label required">Пароль</label>
         <input type="password" class="form-control" name="password" placeholder="Пароль" required>
         <small class="form-text text-muted">Пароль должен быть не менее 6 символов длиной.</small>
