@@ -50,3 +50,12 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 //POST запрос регистрации на сайте
 Route::post('register', 'Auth\RegisterController@register');
 Auth::routes();
+
+/***********************************/
+/*             Админка             */
+/***********************************/
+Route::middleware('admin')->prefix('/admin')->group(function () {
+    Route::get('/', function (){
+        return view('admin.index');
+    });
+});
