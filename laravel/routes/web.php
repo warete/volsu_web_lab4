@@ -59,4 +59,8 @@ Route::middleware('admin')->prefix('/admin')->group(function () {
         return view('admin.index');
     });
     Route::get('/users', 'AdminController@usersList');
+    Route::get('/cities', 'AdminController@citiesList');
+    Route::get('/shops', 'AdminController@shopsList');
+    Route::get('/requests', 'AdminController@requestsList');
+    Route::get('/responds', 'AdminController@respondsList');
 });
