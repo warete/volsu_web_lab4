@@ -8,6 +8,11 @@
                 <li class="nav-item mx-2">
                     <strong>{{ Auth::user()->name }}</strong>
                 </li>
+                @if (Auth::user()->id == 1)
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" href="{{ url('admin') }}">Панель управления</a>
+                    </li>
+                @endif
                 <li class="nav-item mx-2">
                     <a class="nav-link" href="{{ url('logout') }}">Выйти</a>
                 </li>

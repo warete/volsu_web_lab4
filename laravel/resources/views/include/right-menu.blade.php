@@ -12,6 +12,9 @@
                 <li class="pushy-link d-block d-md-none text-uppercase"><a href="{{ url('login') }}"><strong>Войти</strong></a></li>
             @else
                 <li class="pushy-link"><a href="{{ url('logout') }}"><strong>{{ Auth::user()->name }}</strong> (выйти)</a></li>
+                @if (Auth::user()->id == 1)
+                    <li class="pushy-link"><a href="{{ url('admin') }}"><strong>Панель управления</strong></a></li>
+                @endif
             @endif
         </ul>
     </div>
