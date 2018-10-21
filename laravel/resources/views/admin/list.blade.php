@@ -22,7 +22,7 @@
                         @endforeach
                         <td>
                             <a href="#"><i class="fa fa-pencil-alt text-light" aria-hidden="true"></i></a>
-                            <a href="#"><i class="fa fa-times" aria-hidden="true"></i></a>
+                            <a href="{{ $arAdminUrls[$arItem['id']]['delete'] }}"><i class="fa fa-times" aria-hidden="true"></i></a>
                         </td>
                     </tr>
                 @endforeach
