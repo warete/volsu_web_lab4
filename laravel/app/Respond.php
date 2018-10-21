@@ -38,4 +38,14 @@ class Respond extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public static function getStatuses()
+    {
+        $arStatuses = [];
+        foreach (static::$statuses as $key => $status)
+        {
+            $arStatuses[$key] = $status['name'];
+        }
+        return $arStatuses;
+    }
 }

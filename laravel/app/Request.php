@@ -39,4 +39,14 @@ class Request extends Model
     {
         return $this->hasMany('App\Respond', 'request_id');
     }
+
+    public static function getStatuses()
+    {
+        $arStatuses = [];
+        foreach (static::$statuses as $key => $status)
+        {
+            $arStatuses[$key] = $status['name'];
+        }
+        return $arStatuses;
+    }
 }

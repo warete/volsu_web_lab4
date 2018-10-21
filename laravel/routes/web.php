@@ -3,6 +3,7 @@ use App\Request;
 use App\City;
 use App\Shop;
 use App\Respond;
+use App\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,4 +70,34 @@ Route::middleware('admin')->prefix('/admin')->group(function () {
     Route::get('/cities/delete/{id}', 'AdminController@cityDeleteItem');
     Route::get('/shops/delete/{id}', 'AdminController@shopDeleteItem');
     Route::get('/requests/delete/{id}', 'AdminController@requestDeleteItem');
+
+    Route::get('/users/edit/{id}', array('as' => 'user.edit', function($id)
+    {
+        return view('admin.edit.user', ['model' => User::find($id), 'modelName' => 'Пользователи']);
+    }));
+    Route::post('/users/edit/{id}', 'AdminController@userEditItem')->name('user.edit');
+
+    Route::get('/responds/edit/{id}', array('as' => 'respond.edit', function($id)
+    {
+        return view('admin.edit.respond', ['model' => Respond::find($id), 'modelName' => 'Ответы на заявки']);
+    }));
+    Route::post('/responds/edit/{id}', 'AdminController@respondEditItem')->name('respond.edit');
+
+    Route::get('/cities/edit/{id}', array('as' => 'city.edit', function($id)
+    {
+        return view('admin.edit.city', ['model' => City::find($id), 'modelName' => 'Города']);
+    }));
+    Route::post('/cities/edit/{id}', 'AdminController@cityEditItem')->name('city.edit');
+
+    Route::get('/shops/edit/{id}', array('as' => 'shop.edit', function($id)
+    {
+        return view('admin.edit.shop', ['model' => Shop::find($id), 'modelName' => 'Магазины']);
+    }));
+    Route::post('/shops/edit/{id}', 'AdminController@shopEditItem')->name('shop.edit');
+
+    Route::get('/requests/edit/{id}', array('as' => 'request.edit', function($id)
+    {
+        return view('admin.edit.request', ['model' => Request::find($id), 'modelName' => 'Заявки']);
+    }));
+    Route::post('/requests/edit/{id}', 'AdminController@requestEditItem')->name('request.edit');
 });
