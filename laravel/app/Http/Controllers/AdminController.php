@@ -41,4 +41,10 @@ class AdminController extends Controller
         $arItems = Respond::get()->toArray();
         return view('admin.list', ['modelName' => 'Ответы на заявки', 'arItems' => $arItems]);
     }
+
+    public function respondDeleteItem($id)
+    {
+        Respond::find($id)->delete();
+        return redirect(url()->previous());
+    }
 }

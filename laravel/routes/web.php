@@ -63,4 +63,6 @@ Route::middleware('admin')->prefix('/admin')->group(function () {
     Route::get('/shops', 'AdminController@shopsList');
     Route::get('/requests', 'AdminController@requestsList');
     Route::get('/responds', 'AdminController@respondsList');
+
+    Route::get('/responds/delete/{id}', 'AdminController@respondDeleteItem');
 });
